@@ -12,8 +12,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        Task {
+            await doAsyncTask()
+            print("Async task completed")
+        }
     }
 
-
+    func doAsyncTask() async {
+        do {
+            try await Task.sleep(nanoseconds: 200000000)
+        } catch {
+            print("Error: \(error)")
+        }
+    }
 }
 
